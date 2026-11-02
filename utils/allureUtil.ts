@@ -1,0 +1,23 @@
+import { Page,test } from "@playwright/test";
+
+export class allureUtil{
+    //step wrapper
+    static async step(stepName : string, action : () => Promise<void>){
+       await test.step(stepName, async()=>{
+        await action();
+       }); 
+    }
+
+
+// Screenshot Attachment
+
+static async attachScreenshot(page:Page, name: string) {
+    const Screenshot = await page.screenshot();
+
+    await test.info().attach(name,{
+        body: Screenshot,
+        contentType: 'image/png'
+    });
+}
+
+}
