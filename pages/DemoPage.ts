@@ -1,4 +1,4 @@
-import { Locator, Page, Expect } from "@playwright/test";
+import { Locator, Page, expect } from "@playwright/test";
 import { BasePage } from "./BasePage"
 import { allureUtil } from "../utils/allureUtil";
 import { ENV_CONFIG } from "../config/env";
@@ -45,12 +45,20 @@ export class DemoPage extends BasePage {
     async check_practice_form(){
         await this.btn_form.click();
         await this.lnk_practiceForm.click();
-        console.log("Data inside page class :");
-        console.log(this.data);
+        
         //allure
         await allureUtil.step('Creating Step for name entry', async() =>{
             await this.txt_firstName.fill(this.data.firstName);
         });
+
+        await this.txt_lastName.fill(this.data.lastName);
+        //highlighting first name
+        await allureUtil.highlight(this.page,this.txt_lastName);
+        //Taking screenshot
+        await allureUtil.attachScreenshot(this.page,"Screenshot for First and Last Name");
+        //Assertion
+        await expect(this.txt_lastName).toHaveValue(this.data.lastName);
+        
         
 
     }

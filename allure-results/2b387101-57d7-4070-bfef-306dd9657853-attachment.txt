@@ -1,0 +1,4 @@
+Data :
+{ flag: 'Y', testcase: 'TC_02', firstName: 'Selva' }
+Data inside page class :
+{ flag: 'Y', testcase: 'TC_02', firstName: 'Selva' }

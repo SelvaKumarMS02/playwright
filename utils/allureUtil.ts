@@ -20,4 +20,14 @@ static async attachScreenshot(page:Page, name: string) {
     });
 }
 
+//highlight element util
+
+static async highlight(page: Page, focusElement: any){
+    await focusElement.evaluate((node: HTMLElement) =>{
+        (node as HTMLElement).style.border = '3px solid red';
+        (node as HTMLElement).style.backgroundColor = 'rgb(68, 255, 0)';
+        
+    })
+}
+
 }
